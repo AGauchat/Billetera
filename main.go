@@ -16,7 +16,10 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
 	})
 	r.GET("/recibos", controllers.FindRecibos)
+	r.GET("/recibos/:id", controllers.FindRecibo)
 	r.POST("/recibos", controllers.CreateRecibo)
+	r.PATCH("/recibos/:id", controllers.UpdateRecibo)
+	r.DELETE("/recibos/:id", controllers.DeleteRecibo)
 
 	r.Run()
 }

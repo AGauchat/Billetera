@@ -16,3 +16,8 @@ type CreateReciboInput struct {
 	IdTablaApi     int    `json:"IdTablaApi" binding:"required"`
 	NombreTablaApi string `json:"NombreTablaApi"`
 }
+
+type UpdateReciboInput struct {
+	IdTablaApi     int    `json:"IdTablaApi"`
+	NombreTablaApi string `json:"NombreTablaApi"`
+}
