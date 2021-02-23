@@ -26,7 +26,7 @@ func CreateUsuario(c *gin.Context) {
 		Nombres:   input.Nombres,
 		Apellidos: input.Apellidos,
 		//Quito los dos primeros y el ultimo digito del cuil para sacar el DNI
-		DNI:            input.Cuil[2 : len(input.Cuil)-1],
+		DNI:            input.DNI,
 		Cuil:           input.Cuil,
 		Contraseña:     PassHash(input.Contraseña),
 		Direccion:      input.Direccion,
