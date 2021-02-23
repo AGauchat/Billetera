@@ -41,7 +41,7 @@ func FindRecibo(c *gin.Context) { // Get model if exist
 	var recibo models.Recibo
 
 	if err := models.DB.Where("id_recibo = ?", c.Param("id")).First(&recibo).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found!"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "No encontrado!"})
 		return
 	}
 
@@ -54,7 +54,7 @@ func UpdateRecibo(c *gin.Context) {
 	// Get model if exist
 	var recibo models.Recibo
 	if err := models.DB.Where("id_recibo = ?", c.Param("id")).First(&recibo).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "No encontrado!"})
 		return
 	}
 
@@ -76,7 +76,7 @@ func DeleteRecibo(c *gin.Context) {
 	// Get model if exist
 	var recibo models.Recibo
 	if err := models.DB.Where("id_recibo = ?", c.Param("id")).First(&recibo).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found!"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "No encontrado!"})
 		return
 	}
 

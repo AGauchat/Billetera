@@ -17,7 +17,7 @@ func InicioSesion(c *gin.Context) {
 	var usuario models.Usuario
 
 	if err := models.DB.Where("dni = ? AND contraseña = ?", c.Param("dni"), PassHash(c.Param("pass"))).First(&usuario).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found!"})
+		c.JSON(http.StatusNotFound, gin.H{"error": "No Encontrado!"})
 		return
 	}
 
