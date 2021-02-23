@@ -21,5 +21,9 @@ func main() {
 	r.PATCH("/recibos/:id", controllers.UpdateRecibo)
 	r.DELETE("/recibos/:id", controllers.DeleteRecibo)
 
+	r.GET("/inicioSesion/:dni/:pass", controllers.InicioSesion)
+
+	r.POST("/usuario", controllers.CreateUsuario)
+
 	r.Run()
 }

@@ -20,5 +20,17 @@ type Usuario struct {
 	NroDireccion        string `json:"NroDireccion"`
 	NroTransaccion      string `json:"NroTransaccion"`
 	IniciosFallidos     int    `json:"IniciosFallidos"`
-	NroCelular          int    `json:"NroCelular"`
+	NroCelular          string `json:"NroCelular"`
+}
+
+type CreateUsuarioInput struct {
+	Nombres        string `json:"Nombres" gorm:"not null"`
+	Apellidos      string `json:"Apellidos" gorm:"not null"`
+	DNI            string `json:"DNI"`
+	Cuil           string `json:"Cuil" gorm:"not null"`
+	Contraseña     string `json:"Contraseña"`
+	Direccion      string `json:"Direccion" gorm:"not null"`
+	NroDireccion   string `json:"NroDireccion"`
+	NroTransaccion string `json:"NroTransaccion"`
+	NroCelular     string `json:"NroCelular"`
 }
