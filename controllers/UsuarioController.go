@@ -23,9 +23,8 @@ func CreateUsuario(c *gin.Context) {
 
 	// Create recibo
 	usuario := models.Usuario{
-		Nombres:   input.Nombres,
-		Apellidos: input.Apellidos,
-		//Quito los dos primeros y el ultimo digito del cuil para sacar el DNI
+		Nombres:        input.Nombres,
+		Apellidos:      input.Apellidos,
 		DNI:            input.DNI,
 		Cuil:           input.Cuil,
 		Contraseña:     PassHash(input.Contraseña),

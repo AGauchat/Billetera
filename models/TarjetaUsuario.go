@@ -7,8 +7,8 @@ import (
 )
 
 type TarjetaUsuario struct {
-	IdTarjeta        int    `json:"IdCuentaCorriente" gorm:"primary_key;AUTO_INCREMENT;not null"`
-	IdUsuario        int    `json:"IdUsuario"`
+	IdTarjeta        int64  `json:"IdCuentaCorriente" gorm:"primary_key;AUTO_INCREMENT;not null"`
+	IdUsuario        int64  `json:"IdUsuario"`
 	NroTarjeta       string `json:"NroTarjeta" gorm:"not null"`
 	CodVerificacion  int    `json:"CodVerificacion" gorm:"not null"`
 	FechaVencimiento string `json:"FechaVencimiento" gorm:"not null"`

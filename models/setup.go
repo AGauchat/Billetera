@@ -3,26 +3,26 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mssql"
+	"gorm.io/driver/sqlserver"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDataBase() {
-	database, err := gorm.Open("mssql", "sqlserver://sa:Luse_2010@localhost:1433?database=Billetera")
+	dsn := "sqlserver://sa:Luse_2010@localhost:1433?database=Billetera"
+	database, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Recibo{})
-	database.AutoMigrate(&ReciboBIND{})
-	database.AutoMigrate(&CuentaCorriente{})
-	database.AutoMigrate(&TipoMovimiento{})
-	database.AutoMigrate(&TarjetaUsuario{})
-	database.AutoMigrate(&MovimientosCtaCte{})
-	database.AutoMigrate(&Usuario{})
+	_ = database.AutoMigrate(&Recibo{})
+	_ = database.AutoMigrate(&ReciboBIND{})
+	_ = database.AutoMigrate(&TipoMovimiento{})
+	_ = database.AutoMigrate(&TarjetaUsuario{})
+	_ = database.AutoMigrate(&MovimientosCtaCte{})
+	_ = database.AutoMigrate(&Usuario{})
 
 	DB = database
 }

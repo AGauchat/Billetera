@@ -9,11 +9,10 @@ import (
 )
 
 type MovimientosCtaCte struct {
-	IdMovimientosCtaCte int             `json:"IdMovimientosCtaCte" gorm:"primary_key;AUTO_INCREMENT;not null"`
-	IdTipoMovimiento    int             `json:"IdTipoMovimiento" gorm:"not null"`
-	IdCuentaCorriente   int             `json:"IdCuentaCorriente" gorm:"not null"`
-	IdRecibo            int             `json:"IdRecibo" gorm:"not null"`
-	CVUDesde            string          `json:"CVUDesde" gorm:"not null"`
+	IdMovimientosCtaCte int64           `json:"IdMovimientosCtaCte" gorm:"primary_key;AUTO_INCREMENT;not null"`
+	IdTipoMovimiento    int64           `json:"IdTipoMovimiento" gorm:"not null"`
+	IdUsuario           int64           `json:"IdUsuario" gorm:"not null"`
+	IdRecibo            int64           `json:"IdRecibo" gorm:"not null"`
 	CVUHasta            string          `json:"CVUHasta" gorm:"not null"`
 	Fecha               time.Time       `json:"Fecha" gorm:"not null"`
 	Estado              string          `json:"Estado"`

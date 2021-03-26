@@ -7,6 +7,6 @@ import (
 )
 
 type TipoMovimiento struct {
-	IdTipoMovimiento int    `json:"IdTipoMovimiento" gorm:"primary_key"`
+	IdTipoMovimiento int64  `json:"IdTipoMovimiento" gorm:"primary_key"`
 	Nombre           string `json:"Nombre"`
 }

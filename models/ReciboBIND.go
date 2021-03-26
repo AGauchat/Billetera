@@ -7,7 +7,7 @@ import (
 )
 
 type ReciboBIND struct {
-	IdReciboBIND int             `json:"IdReciboBIND" gorm:"primary_key;AUTO_INCREMENT"`
+	IdReciboBIND int64           `json:"IdReciboBIND" gorm:"primary_key;AUTO_INCREMENT"`
 	Fecha        time.Time       `json:"Fecha"`
 	Monto        decimal.Decimal `json:"Monto"`
 }

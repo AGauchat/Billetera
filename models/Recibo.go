@@ -7,17 +7,17 @@ import (
 )
 
 type Recibo struct {
-	IdRecibo       int    `json:"IdRecibo" gorm:"primary_key;AUTO_INCREMENT"`
-	IdTablaApi     int    `json:"IdTablaApi"`
+	IdRecibo       int64  `json:"IdRecibo" gorm:"primary_key;AUTO_INCREMENT"`
+	IdTablaApi     int64  `json:"IdTablaApi"`
 	NombreTablaApi string `json:"NombreTablaApi"`
 }
 
 type CreateReciboInput struct {
-	IdTablaApi     int    `json:"IdTablaApi" binding:"required"`
+	IdTablaApi     int64  `json:"IdTablaApi" binding:"required"`
 	NombreTablaApi string `json:"NombreTablaApi"`
 }
 
 type UpdateReciboInput struct {
-	IdTablaApi     int    `json:"IdTablaApi"`
+	IdTablaApi     int64  `json:"IdTablaApi"`
 	NombreTablaApi string `json:"NombreTablaApi"`
 }
