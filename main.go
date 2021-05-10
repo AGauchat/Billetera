@@ -15,6 +15,7 @@ func main() {
 
 	r.GET("/inicioSesion/:dni/:pass", users.InicioSesion)
 
+	r.GET("/refreshToken", middleware.Refresh)
 	r.Use(middleware.VerifyToken)
 
 	r.GET("/recibos", recibos.FindRecibos)

@@ -34,13 +34,11 @@ func VerifyToken(c *gin.Context) {
 	})
 
 	if token.Valid {
-		Refresh(c)
 		c.Next()
 	} else if ve, ok := err.(*jwt.ValidationError); ok {
 		if ve.Errors&jwt.ValidationErrorMalformed != 0 {
 			c.AbortWithStatus(http.StatusBadRequest)
 		} else if ve.Errors&(jwt.ValidationErrorExpired|jwt.ValidationErrorNotValidYet) != 0 {
-			// Token is either expired or not active yet
 			c.AbortWithStatus(http.StatusRequestTimeout)
 		} else {
 			c.AbortWithStatus(400)

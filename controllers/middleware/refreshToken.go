@@ -17,6 +17,12 @@ func Refresh(c *gin.Context) {
 		c.Writer.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	headerToken := c.Request.Header.Get("token")
+	if cookie != headerToken {
+		c.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+
 	tknStr := cookie
 	claims := &Claim{}
 	tkn, err := jwt.ParseWithClaims(tknStr, claims, func(token *jwt.Token) (interface{}, error) {
@@ -48,5 +54,8 @@ func Refresh(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("token", tokenString, 300, "/", "localhost", false, true)
+	c.SetCookie("token", tokenString, 360, "/", "localhost", false, true)
+
+	c.JSON(http.StatusOK, gin.H{"token": tokenString})
+	return
 }
