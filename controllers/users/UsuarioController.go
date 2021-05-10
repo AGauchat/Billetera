@@ -1,6 +1,7 @@
 package users
 
 import (
+	"billetera/controllers/middleware"
 	"billetera/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -36,6 +37,10 @@ func CreateUsuario(c *gin.Context) {
 		NroCelular:     input.NroCelular,
 	}
 	models.DB.Create(&usuario)
+
+	t := middleware.GenerateToken(usuario.IdUsuario)
+
+	c.SetCookie("token", t, 300, "/", "localhost", false, true)
 
 	c.JSON(http.StatusOK, usuario)
 }
