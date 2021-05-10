@@ -1,10 +1,11 @@
 package main
 
 import (
-	"billetera/controllers"
+	"billetera/controllers/middleware"
+	"billetera/controllers/recibos"
+	"billetera/controllers/users"
 	"billetera/models"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func main() {
@@ -12,18 +13,19 @@ func main() {
 
 	models.ConnectDataBase()
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
-	})
-	r.GET("/recibos", controllers.FindRecibos)
-	r.GET("/recibos/:id", controllers.FindRecibo)
-	r.POST("/recibos", controllers.CreateRecibo)
-	r.PATCH("/recibos/:id", controllers.UpdateRecibo)
-	r.DELETE("/recibos/:id", controllers.DeleteRecibo)
+	r.GET("/inicioSesion/:dni/:pass", users.InicioSesion)
 
-	r.GET("/inicioSesion/:dni/:pass", controllers.InicioSesion)
+	r.Use(middleware.VerifyToken)
 
-	r.POST("/usuario", controllers.CreateUsuario)
+	r.GET("/recibos", recibos.FindRecibos)
+	r.GET("/recibos/:id", recibos.FindRecibo)
+	r.POST("/recibos", recibos.CreateRecibo)
+	r.PATCH("/recibos/:id", recibos.UpdateRecibo)
+	r.DELETE("/recibos/:id", recibos.DeleteRecibo)
+
+	r.POST("/usuario", users.CreateUsuario)
+
+	r.GET("/tarjetaUsuario/:id", users.FindTarjeta)
 
 	r.Run()
 }

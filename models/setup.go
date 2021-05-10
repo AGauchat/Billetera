@@ -26,3 +26,27 @@ func ConnectDataBase() {
 
 	DB = database
 }
+
+func ConnectDataBasePrueba() *gorm.DB {
+	dsn := "sqlserver://sa:Luse_2010@localhost:1433?database=Billetera"
+	database, err := gorm.Open(sqlserver.Open(dsn), &gorm.Config{})
+
+	if err != nil {
+		panic("Failed to connect to database!")
+	}
+
+	return database
+}
+
+func Migrate() bool {
+	var db = ConnectDataBasePrueba()
+
+	_ = db.AutoMigrate(&Recibo{})
+	_ = db.AutoMigrate(&ReciboBIND{})
+	_ = db.AutoMigrate(&TipoMovimiento{})
+	_ = db.AutoMigrate(&TarjetaUsuario{})
+	_ = db.AutoMigrate(&MovimientosCtaCte{})
+	_ = db.AutoMigrate(&Usuario{})
+
+	return true
+}

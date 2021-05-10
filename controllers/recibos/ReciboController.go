@@ -1,6 +1,6 @@
 // controllers/ReciboController.go
 
-package controllers
+package recibos
 
 import (
 	"billetera/models"
@@ -11,7 +11,8 @@ import (
 // GET /recibos
 func FindRecibos(c *gin.Context) {
 	var Recibo []models.Recibo
-	models.DB.Find(&Recibo)
+	var db = models.DB
+	db.Find(&Recibo)
 
 	c.JSON(http.StatusOK, Recibo)
 }
