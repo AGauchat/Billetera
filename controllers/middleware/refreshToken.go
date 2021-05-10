@@ -8,7 +8,7 @@ import (
 )
 
 func Refresh(c *gin.Context) {
-	cookie, err := c.Cookie("middleware")
+	cookie, err := c.Cookie("token")
 	if err != nil {
 		if err == http.ErrNoCookie {
 			c.Writer.WriteHeader(http.StatusUnauthorized)
@@ -48,5 +48,5 @@ func Refresh(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("middleware", tokenString, 300, "/", "localhost", false, true)
+	c.SetCookie("token", tokenString, 300, "/", "localhost", false, true)
 }

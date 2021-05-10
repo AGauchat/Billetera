@@ -14,7 +14,9 @@ func CreateUsuario(c *gin.Context) {
 		return
 	}
 
-	//Verifico que el CUIL no se repita
+	//Get informacion de api
+
+	//Verifico que el CUIL no se repita con CUIL devuelto api
 	var usuarioF models.Usuario
 	if err := models.DB.Where("cuil = ?", input.Cuil).Find(&usuarioF).Error; err == nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Usuario ya registrado!"})

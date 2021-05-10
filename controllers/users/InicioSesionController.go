@@ -27,7 +27,7 @@ func InicioSesion(c *gin.Context) {
 
 	t := middleware.GenerateToken(usuario.IdUsuario)
 
-	c.SetCookie("middleware", t, 300, "/", "localhost", false, true)
+	c.SetCookie("token", t, 300, "/", "localhost", false, true)
 
-	c.JSON(http.StatusOK, gin.H{"middleware": t})
+	c.JSON(http.StatusOK, gin.H{"token": t})
 }

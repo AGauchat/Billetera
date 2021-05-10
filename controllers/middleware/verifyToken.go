@@ -8,7 +8,7 @@ import (
 )
 
 func VerifyToken(c *gin.Context) {
-	receivedToken, err := c.Cookie("middleware")
+	receivedToken, err := c.Cookie("token")
 
 	if err != nil {
 		if err == http.ErrNoCookie {
@@ -19,7 +19,7 @@ func VerifyToken(c *gin.Context) {
 		c.AbortWithStatus(http.StatusBadRequest)
 	}
 
-	if receivedToken != c.Request.Header.Get("middleware") {
+	if receivedToken != c.Request.Header.Get("token") {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
