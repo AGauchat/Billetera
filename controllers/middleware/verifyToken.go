@@ -8,7 +8,8 @@ import (
 )
 
 func VerifyToken(c *gin.Context) {
-	receivedToken, err := c.Cookie("token")
+	coockieToken, err := c.Cookie("token")
+	headerToken := c.Request.Header.Get("token")
 
 	if err != nil {
 		if err == http.ErrNoCookie {
@@ -19,12 +20,12 @@ func VerifyToken(c *gin.Context) {
 		c.AbortWithStatus(http.StatusBadRequest)
 	}
 
-	if receivedToken != c.Request.Header.Get("token") {
+	if coockieToken != headerToken {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
 
-	token, err := jwt.Parse(receivedToken, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.Parse(headerToken, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
