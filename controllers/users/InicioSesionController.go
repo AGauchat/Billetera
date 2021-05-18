@@ -17,10 +17,14 @@ func PassHash(pas string) string {
 func InicioSesion(c *gin.Context) {
 	var usuario models.Usuario
 
-	dni := c.Param("dni")
-	pass := c.Param("pass")
+	println(c.Request.Header.Get("dni"))
+	println(c.Request.Header.Get("pass"))
 
-	if err := models.DB.Where("dni = ? AND contraseña = ?", dni, PassHash(pass)).First(&usuario).Error; err != nil {
+	dni := c.Request.Header.Get("dni")
+	pass := c.Request.Header.Get("pass")
+
+	db := models.ConnectDataBasePrueba()
+	if err := db.Where("dni = ? AND contraseña = ?", dni, PassHash(pass)).First(&usuario).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "No Encontrado!"})
 		return
 	}

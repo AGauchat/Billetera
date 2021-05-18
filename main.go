@@ -13,7 +13,7 @@ func main() {
 
 	models.ConnectDataBase()
 
-	r.GET("/inicioSesion/:dni/:pass", users.InicioSesion)
+	r.POST("/inicioSesion/", users.InicioSesion)
 
 	r.GET("/refreshToken", middleware.Refresh)
 	r.Use(middleware.VerifyToken)
