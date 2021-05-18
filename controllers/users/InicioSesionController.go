@@ -17,9 +17,6 @@ func PassHash(pas string) string {
 func InicioSesion(c *gin.Context) {
 	var usuario models.Usuario
 
-	println(c.Request.Header.Get("dni"))
-	println(c.Request.Header.Get("pass"))
-
 	dni := c.Request.Header.Get("dni")
 	pass := c.Request.Header.Get("pass")
 
