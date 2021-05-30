@@ -1,7 +1,6 @@
 package main
 
 import (
-	"billetera/controllers/middleware"
 	"billetera/controllers/recibos"
 	"billetera/controllers/users"
 	"billetera/models"
@@ -15,8 +14,10 @@ func main() {
 
 	r.POST("/inicioSesion/", users.InicioSesion)
 
-	r.GET("/refreshToken", middleware.Refresh)
-	r.Use(middleware.VerifyToken)
+	r.GET("/GetIdUsrporDni/:dni", users.GetIdUsrporDni)
+
+	//r.GET("/refreshToken", middleware.Refresh)
+	//r.Use(middleware.VerifyToken)
 
 	r.GET("/recibos", recibos.FindRecibos)
 	r.GET("/recibos/:id", recibos.FindRecibo)

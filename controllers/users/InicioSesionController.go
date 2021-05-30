@@ -32,3 +32,15 @@ func InicioSesion(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"token": t})
 }
+
+func GetIdUsrporDni(c *gin.Context) {
+	var usuario models.Usuario
+	q := models.DB.Find(&usuario, "dni = ?", c.Param("dni"))
+	if q.Error != nil || c.Errors != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error_massage": q.Error.Error() + " / " + c.Errors.String()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"user_id": usuario.IdUsuario})
+	return
+}
